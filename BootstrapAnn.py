@@ -57,7 +57,7 @@ for chromosome in ase_list:
 for line in open(args.vcf):
     if line[0] == "#":
         if not line[1] == "#":
-            print ("##INFO=<ID=BootstrapAnn,Number=2,Type=Float,Description=\"BootstrapAnn p-values and GATK-ASEcounter stats (alt_count,total_count,binomial,nonparametric)\">")
+            print ("##FORMAT=<ID=BootstrapAnn,Number=2,Type=Float,Description=\"BootstrapAnn p-values and GATK-ASEcounter stats (alt_count,total_count,binomial,nonparametric)\">")
         print line.strip()
         continue
 
@@ -65,7 +65,8 @@ for line in open(args.vcf):
     if content[0] in ase_list:
         if content[1] in ase_list[content[0]]:
             if content[4] in ase_list[content[0]][content[1]]:
-                content[7]+= ";BootstrapAnn={},{},{},{}".format(ase_list[content[0]][content[1]][content[4]]["alt_count"],ase_list[content[0]][content[1]][content[4]]["tot_count"],ase_list[content[0]][content[1]][content[4]]["p_bin"],ase_list[content[0]][content[1]][content[4]]["non_param"])
+                content[8]+= ":BT"
+		content[9]+=":{},{},{},{}".format(ase_list[content[0]][content[1]][content[4]]["alt_count"],ase_list[content[0]][content[1]][content[4]]["tot_count"],ase_list[content[0]][content[1]][content[4]]["p_bin"],ase_list[content[0]][content[1]][content[4]]["non_param"])
                 print "\t".join(content)
                 continue
 
