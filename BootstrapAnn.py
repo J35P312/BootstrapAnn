@@ -1,3 +1,4 @@
+#!/usr/bin/env python2.7
 import numpy
 import argparse
 import scipy.stats
@@ -57,7 +58,7 @@ for chromosome in ase_list:
 for line in open(args.vcf):
     if line[0] == "#":
         if not line[1] == "#":
-            print ("##FORMAT=<ID=BootstrapAnn,Number=2,Type=Float,Description=\"BootstrapAnn p-values and GATK-ASEcounter stats (alt_count,total_count,binomial,nonparametric)\">")
+            print ("##FORMAT=<ID=BT,Number=4,Type=Float,Description=\"BootstrapAnn p-values and GATK-ASEcounter stats (alt_count,total_count,binomial,nonparametric)\">")
         print line.strip()
         continue
 
