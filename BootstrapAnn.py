@@ -36,7 +36,7 @@ all_variants=[]
 
 first=True
 for line in open(args.ase):
-     if first:
+    if first:
         first=False
         continue
     content=line.strip().split()
