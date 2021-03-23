@@ -36,8 +36,8 @@ all_variants=[]
 
 first=True
 for line in open(args.ase):
-    if first:
-	first=False
+     if first:
+        first=False
         continue
     content=line.strip().split()
     if not content[0] in ase_list:
@@ -77,7 +77,7 @@ for line in reader(args.vcf):
     if line[0] == "#":
         if not line[1] == "#":
             print ("##FORMAT=<ID=BT,Number=4,Type=Float,Description=\"BootstrapAnn p-values and GATK-ASEcounter stats (alt_count,total_count,binomial,nonparametric(-1 if not tested) )\">")
-        print line.strip()
+        print (line.strip())
         continue
 
     content=line.strip().split()
@@ -90,13 +90,11 @@ for line in reader(args.vcf):
                 non_param_p="{}".format(round( float(ase_list[content[0]][content[1]][content[4]]["non_param"]) ,5))
 
                 content[9]+=":{},{},{},{}".format(ase_list[content[0]][content[1]][content[4]]["alt_count"],ase_list[content[0]][content[1]][content[4]]["tot_count"],bin_p,non_param_p)
-                print "\t".join(content)
+                print ("\t".join(content))
 
             else:
-                print line.strip()
+                print (line.strip())
         else:
-            print line.strip()
+            print (line.strip())
     else:
-        print line.strip()
-
-
+        print (line.strip())
