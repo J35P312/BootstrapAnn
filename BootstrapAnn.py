@@ -2,6 +2,7 @@
 import numpy
 import argparse
 import scipy.stats
+import gzip
 
 def non_param_test(total_count,alt_count,n,all_variants):
     p=0
@@ -31,6 +32,7 @@ args = parser.parse_args()
 
 ase_list={}
 all_variants=[]
+
 
 first=True
 for line in open(args.ase):
@@ -66,7 +68,12 @@ for chromosome in ase_list:
 
             ase_list[chromosome][pos][alt]["non_param"]=non_param_test(total_count,alt_count,args.n,all_variants)
 
-for line in open(args.vcf):
+if args.vcf.endswith('.gz'):
+    reader = gzip.open
+else:
+    reader = open
+
+for line in reader(args.vcf):
     if line[0] == "#":
         if not line[1] == "#":
             print ("##FORMAT=<ID=BT,Number=4,Type=Float,Description=\"BootstrapAnn p-values and GATK-ASEcounter stats (alt_count,total_count,binomial,nonparametric(-1 if not tested) )\">")
