@@ -74,6 +74,7 @@ else:
     reader = open
 
 for line in reader(args.vcf):
+    line = line.decode('utf-8')
     if line[0] == "#":
         if not line[1] == "#":
             print ("##FORMAT=<ID=BT,Number=4,Type=Float,Description=\"BootstrapAnn p-values and GATK-ASEcounter stats (alt_count,total_count,binomial,nonparametric(-1 if not tested) )\">")
